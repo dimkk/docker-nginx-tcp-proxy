@@ -1,23 +1,21 @@
-FROM ubuntu:14.04
+FROM ubuntu
 
-MAINTAINER YuLun Shih <shih@yulun.me>
+MAINTAINER dimkk <dimkk@outlook.com>
+
+ENV NGINX_VERSION 1.11.10
 
 RUN apt-get update && \
 	apt-get -y install build-essential \
-	libssl-dev \
+	libssl-dev nano openvpn \
 	curl \
 	libpcre3 \
 	libpcre3-dev && \
 	rm -rf /var/lib/apt/lists/* # 20150205
 
-RUN curl -O http://nginx.org/download/nginx-1.6.2.tar.gz && \
-	tar zxvf nginx-1.6.2.tar.gz && \
-	curl -L -O https://github.com/yaoweibin/nginx_tcp_proxy_module/archive/v0.4.5.tar.gz && \
-	tar zxvf v0.4.5.tar.gz && \
-	rm -rf *.tar.gz && \
-	cd nginx-1.6.2 && \
-	patch -p1 < ../nginx_tcp_proxy_module-0.4.5/tcp.patch && \
-	./configure --add-module=../nginx_tcp_proxy_module-0.4.5/ && \
+RUN curl -O http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
+	tar zxvf nginx-$NGINX_VERSION.tar.gz && \
+	cd nginx-$NGINX_VERSION && \
+	./configure --with-stream  --with-http_stub_status_module && \
 	make && make install
 
 CMD /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
