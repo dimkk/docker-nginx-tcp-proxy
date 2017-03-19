@@ -4,7 +4,7 @@ echo 'checking env OVPN ' $OVPN
 if [ -a $OVPN ]
   then
     echo "got ovpn, trying to connect"
-    exec openvpn --config $OVPN
+    exec openvpn --config $OVPN --dev tun
     sleep 10
 fi
 

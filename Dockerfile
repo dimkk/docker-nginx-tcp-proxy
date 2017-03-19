@@ -6,7 +6,7 @@ ENV NGINX_VERSION 1.11.10
 
 RUN apt-get update && \
 	apt-get -y install build-essential \
-	libssl-dev nano openvpn \
+	libssl-dev nano openvpn resolvconf \
 	curl \
 	libpcre3 \
 	libpcre3-dev && \
