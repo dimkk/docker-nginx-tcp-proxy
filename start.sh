@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'checking $OVPN'
+echo 'checking env OVPN ' $OVPN
 if [ -a $OVPN ]
   then
     echo "got ovpn, trying to connect"

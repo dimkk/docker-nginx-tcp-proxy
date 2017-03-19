@@ -19,7 +19,8 @@ Quick Start
     $ docker run --name nginx-tcp-proxy -d -p 2106:2106 -p 8123:8123 \
         -v C:/docker-nginx-tcp-proxy/nginx.conf:/usr/local/nginx/conf/nginx.conf \
         -v C:/docker-nginx-tcp-proxy/client.ovpn:/root/client.ovpn \
-        -e OVPN=/root/client.ovpn
+        -e OVPN=/root/client.ovpn \
+        --cap-add=NET_ADMIN --device /dev/net/tun \
         dimkk/docker-nginx-tcp-proxy
 
 Manual
