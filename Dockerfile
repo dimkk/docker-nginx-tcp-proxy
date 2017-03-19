@@ -18,4 +18,6 @@ RUN curl -O http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
 	./configure --with-stream  --with-http_stub_status_module && \
 	make && make install
 
-CMD /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+COPY ./start.sh /root
+
+CMD sudo bash /root/start.sh
