@@ -20,4 +20,4 @@ RUN curl -O http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
 
 COPY ./start.sh /root
 
-CMD sudo bash /root/start.sh
+CMD /bin/bash /root/start.sh
