@@ -18,6 +18,10 @@ RUN curl -O http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
 	./configure --with-stream  --with-http_stub_status_module && \
 	make && make install
 
+VOLUME /root
+
 COPY ./start.sh /root
 
-CMD /bin/bash /root/start.sh
+WORKDIR /root
+
+CMD /bin/bash ./start.sh
